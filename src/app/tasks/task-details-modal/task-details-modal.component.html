@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Détails de la Tâche</h2>
+@if (task) {
+  <mat-dialog-content>
+    <p><strong>Nom :</strong> {{ task.label }}</p>
+    <p><strong>Statut :</strong> {{ task.complete ? 'Complétée' : 'À faire' }}</p>
+    <p><strong>Date de création :</strong> {{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+  </mat-dialog-content>
+} @else {
+  <ng-template #errorTemplate>
+    <p class="text-danger">{{ error }}</p>
+  </ng-template>
+}
+
+
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Fermer</button>
+</mat-dialog-actions>
