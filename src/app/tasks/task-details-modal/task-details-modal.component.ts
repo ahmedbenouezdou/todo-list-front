@@ -3,14 +3,16 @@ import {MAT_DIALOG_DATA, MatDialogActions, MatDialogContent, MatDialogRef} from 
 import { Task } from '../task-list/models/task.model';
 import {DatePipe} from '@angular/common';
 import { TaskService } from '../task-list/services/task.service';
+import {MatButton} from "@angular/material/button";
 @Component({
   selector: 'app-task-details-modal',
   standalone: true,
-  imports: [
-    MatDialogContent,
-    MatDialogActions,
-    DatePipe
-  ],
+    imports: [
+        MatDialogContent,
+        MatDialogActions,
+        DatePipe,
+        MatButton
+    ],
   templateUrl: './task-details-modal.component.html',
   styleUrl: './task-details-modal.component.scss'
 })

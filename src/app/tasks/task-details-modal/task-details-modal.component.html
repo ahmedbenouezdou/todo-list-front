@@ -6,7 +6,7 @@
     <p><strong>Date de création :</strong> {{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
   </mat-dialog-content>
 } @else {
-  <ng-template #errorTemplate>
+  <ng-template>
     <p class="text-danger">{{ error }}</p>
   </ng-template>
 }
@@ -14,5 +14,5 @@
 
 
 <mat-dialog-actions align="end">
-  <button mat-button (click)="close()">Fermer</button>
+  <button mat-button color="primary" (click)="close()">Fermer</button>
 </mat-dialog-actions>

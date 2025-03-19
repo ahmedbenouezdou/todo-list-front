@@ -14,7 +14,7 @@ export class TaskService {
   // Signal pour stocker les tâches
   tasks = signal<Task[]>([]);
   pageNo = signal(0);
-  pageSize = signal(5);
+  pageSize = signal(10);
   totalElements = signal(0);
   totalPages = signal(0);
   lastPage = signal(false);
@@ -23,7 +23,7 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
 // Charger les tâches avec pagination
-  loadTasks(page: number = 0, size: number = 5) {
+  loadTasks(page: number, size: number) {
     this.http.get<TaskPagination>(`${this.apiUrl}/pagination?page=${page}&size=${size}`).subscribe({
       next: (data) => {
         this.tasks.set(data.content);
@@ -42,9 +42,9 @@ export class TaskService {
     this.http.post<Task>(`${this.apiUrl}?label=${label}`, {}).subscribe({
       next: () => {
         if(showPendingOnly){
-          this.pendingTasks();
+          this.pendingTasks(this.pageNo(), this.pageSize());
         }else{
-          this.loadTasks();
+          this.loadTasks(this.pageNo(), this.pageSize());
         }
       },
       error: (err) => this.error.set(err.message)
@@ -67,7 +67,7 @@ export class TaskService {
     });
   }
 
-  pendingTasks(page: number = 0, size: number = 5) {
+  pendingTasks(page: number, size: number) {
     this.http.get<TaskPagination>(`${this.apiUrl}/pending?page=${page}&size=${size}`).subscribe({
       next: (data) => {
         this.tasks.set(data.content);
