@@ -4,6 +4,7 @@
     <p><strong>Nom :</strong> {{ task.label }}</p>
     <p><strong>Statut :</strong> {{ task.complete ? 'Complétée' : 'À faire' }}</p>
     <p><strong>Date de création :</strong> {{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+    <p><strong>Date de modification :</strong> {{ task.modifAt | date:'dd/MM/yyyy HH:mm' }}</p>
   </mat-dialog-content>
 } @else {
   <ng-template>

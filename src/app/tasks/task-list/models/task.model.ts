@@ -3,4 +3,5 @@ export interface Task {
   label: string;
   complete: boolean;
   createdAt: string;
+  modifAt?: string;
 }
